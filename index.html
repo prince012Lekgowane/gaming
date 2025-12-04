@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetroGaming Hub | South Africa's Retro Gaming Specialists</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #ff3c00;
+            --dark: #0a0a1a;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --card-bg: rgba(26, 26, 46, 0.9);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --border-radius: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a2e 100%);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: rgba(10, 10, 26, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background: #ff5500;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 60, 0, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(106, 17, 203, 0.2) 0%, transparent 70%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #ff3c00, #ffcc00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 60, 0, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(255, 60, 0, 0.8), 0 0 30px rgba(255, 204, 0, 0.6); }
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            color: #ccc;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        /* Animated Console Icons */
+        .console-icons {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .console-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.5s ease;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .console-icon:nth-child(2) { animation-delay: 1s; }
+        .console-icon:nth-child(3) { animation-delay: 2s; }
+        .console-icon:nth-child(4) { animation-delay: 3s; }
+        .console-icon:nth-child(5) { animation-delay: 4s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .console-icon:hover {
+            transform: scale(1.2) rotate(10deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 5px;
+        }
+        
+        /* Packages Section */
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .package-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border-color: var(--primary);
+        }
+        
+        .package-header {
+            padding: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            text-align: center;
+        }
+        
+        .package-header h3 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin: 1rem 0;
+            color: white;
+        }
+        
+        .package-price span {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .package-body {
+            padding: 1.5rem;
+        }
+        
+        .package-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .package-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .package-features li i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        
+        .package-footer {
+            padding: 0 1.5rem 1.5rem;
+            text-align: center;
+        }
+        
+        /* Services Section */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        /* Products Section */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-img {
+            height: 180px;
+            background: linear-gradient(to right, #333, #555);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-price {
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+        
+        /* Currency Badge */
+        .currency-badge {
+            background: linear-gradient(to right, #ffcc00, #ff9900);
+            color: #333;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(5, 5, 15, 0.95);
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            .console-icons {
+                gap: 2rem;
+            }
+            
+            .console-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .console-icons {
+                gap: 1.5rem;
+            }
+            
+            .console-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+            
+            .package-price {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h1>RetroGaming Hub</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#packages">Packages</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#subscriptions">Subscriptions</a></li>
+                    <li><a href="#roms">ROMs & BIOS</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn btn-outline">Sign Up</button>
+                <button class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Relive Your Gaming Glory Days</h2>
+            <p>South Africa's premier destination for retro gaming conversions, pre-built consoles, and gaming subscriptions. We transform any computer into a retro gaming powerhouse!</p>
+            <div class="hero-btns">
+                <button class="btn btn-accent">Shop Packages</button>
+                <button class="btn btn-outline">Convert My PC</button>
+            </div>
+            
+            <!-- Animated Console Icons -->
+            <div class="console-icons">
+                <div class="console-icon"><i class="fab fa-playstation"></i></div>
+                <div class="console-icon"><i class="fab fa-xbox"></i></div>
+                <div class="console-icon"><i class="fas fa-gamepad"></i></div>
+                <div class="console-icon"><i class="fas fa-joystick"></i></div>
+                <div class="console-icon"><i class="fas fa-tv"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Retro Console Packages</h2>
+                <p>Choose from our expertly curated packages, each including 10 games (expandable to 50)</p>
+            </div>
+            
+            <div class="packages">
+                <!-- PlayStation Package -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>PlayStation Package</h3>
+                        <div class="package-price"><span class="currency-badge">ZAR</span> R2,499<span>.99</span></div>
+                        <p>PS1, PS2, PS3, PS4 on Batocera</p>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Full PlayStation Emulation Suite</li>
+                            <li><i class="fas fa-check"></i> 10 Classic Games Included</li>
+                            <li><i class="fas fa-check"></i> High-Quality Controllers (2x)</li>
+                            <li><i class="fas fa-check"></i> 4K Upscaling Capable</li>
+                            <li><i class="fas fa-check"></i> Lifetime Updates</li>
+                        </ul>
+                        <p>Add up to 50 games for R499.99 extra</p>
+                    </div>
+                    <div class="package-footer">
+                        <button class="btn btn-primary btn-block">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Nintendo Package -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Nintendo Package</h3>
+                        <div class="package-price"><span class="currency-badge">ZAR</span> R2,199<span>.99</span></div>
+                        <p>All Nintendo Consoles on Batocera</p>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> NES, SNES, N64, GameCube, Wii</li>
+                            <li><i class="fas fa-check"></i> 10 Classic Games Included</li>
+                            <li><i class="fas fa-check"></i> Nintendo-style Controllers (2x)</li>
+                            <li><i class="fas fa-check"></i> Game Boy/DS Emulation</li>
+                            <li><i class="fas fa-check"></i> Lifetime Updates</li>
+                        </ul>
+                        <p>Add up to 50 games for R449.99 extra</p>
+                    </div>
+                    <div class="package-footer">
+                        <button class="btn btn-primary btn-block">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Xbox Package -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Xbox Package</h3>
+                        <div class="package-price"><span class="currency-badge">ZAR</span> R2,349<span>.99</span></div>
+                        <p>Xbox, Xbox 360, Xbox One on Batocera</p>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> Full Xbox Emulation Suite</li>
+                            <li><i class="fas fa-check"></i> 10 Classic Games Included</li>
+                            <li><i class="fas fa-check"></i> Xbox-style Controllers (2x)</li>
+                            <li><i class="fas fa-check"></i> 4K Upscaling Capable</li>
+                            <li><i class="fas fa-check"></i> Lifetime Updates</li>
+                        </ul>
+                        <p>Add up to 50 games for R479.99 extra</p>
+                    </div>
+                    <div class="package-footer">
+                        <button class="btn btn-primary btn-block">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Ultimate Combo Package -->
+                <div class="package-card">
+                    <div class="package-header" style="background: linear-gradient(to right, #ff3c00, #ffcc00);">
+                        <h3>Ultimate Combo</h3>
+                        <div class="package-price"><span class="currency-badge">ZAR</span> R3,999<span>.99</span></div>
+                        <p>ALL Consoles + 50 Games</p>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li><i class="fas fa-check"></i> PlayStation, Nintendo, Xbox</li>
+                            <li><i class="fas fa-check"></i> 50 Games Included (Your Choice)</li>
+                            <li><i class="fas fa-check"></i> 4 Controllers (Different Styles)</li>
+                            <li><i class="fas fa-check"></i> 4K Upscaling & HD Textures</li>
+                            <li><i class="fas fa-check"></i> Premium Support & Updates</li>
+                        </ul>
+                        <p>Best Value - Save R1,000+</p>
+                    </div>
+                    <div class="package-footer">
+                        <button class="btn btn-accent btn-block">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" style="background: rgba(0, 0, 0, 0.3);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>From conversion to subscription - we've got all your retro gaming needs covered</p>
+            </div>
+            
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>PC-to-Console Conversion</h3>
+                    <p>We transform any computer or laptop into a dedicated retro gaming console with Batocera.</p>
+                    <p class="product-price">From R899.99</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>ROMs & BIOS Packages</h3>
+                    <p>Legally sourced ROMs and BIOS files for all major consoles. Regularly updated collections.</p>
+                    <p class="product-price">From R149.99</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Pre-Built Consoles</h3>
+                    <p>Ready-to-play retro consoles with your choice of games and controllers included.</p>
+                    <p class="product-price">From R1,799.99</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Online Retro Subscription</h3>
+                    <p>Stream thousands of retro games directly to your device. No hardware needed!</p>
+                    <p class="product-price">R99.99/month</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular Products</h2>
+                <p>Best sellers and newest additions to our retro gaming collection</p>
+            </div>
+            
+            <div class="products">
+                <div class="product-card">
+                    <div class="product-img" style="background: linear-gradient(to right, #003087, #0072ce);">
+                        <i class="fab fa-xbox"></i>
+                    </div>
+                    <div class="product-info">
+                        <h4>Xbox Retro Console</h4>
+                        <p>Pre-loaded with 20 Xbox classics</p>
+                        <div class="product-price"><span class="currency-badge">ZAR</span> R2,199.99</div>
+                        <button class="btn btn-outline">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img" style="background: linear-gradient(to right, #003791, #c1c1c1);">
+                        <i class="fab fa-playstation"></i>
+                    </div>
+                    <div class="product-info">
+                        <h4>PlayStation Retro Console</h4>
+                        <p>PS1-PS4 emulation, 25 games</p>
+                        <div class="product-price"><span class="currency-badge">ZAR</span> R2,499.99</div>
+                        <button class="btn btn-outline">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img" style="background: linear-gradient(to right, #e60012, #8c8c8c);">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="product-info">
+                        <h4>Nintendo Retro Console</h4>
+                        <p>NES to Switch, 30 classic games</p>
+                        <div class="product-price"><span class="currency-badge">ZAR</span> R2,099.99</div>
+                        <button class="btn btn-outline">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img" style="background: linear-gradient(to right, #333, #666);">
+                        <i class="fas fa-compact-disc"></i>
+                    </div>
+                    <div class="product-info">
+                        <h4>ROMs Collection Pack</h4>
+                        <p>1000+ games for all consoles</p>
+                        <div class="product-price"><span class="currency-badge">ZAR</span> R499.99</div>
+                        <button class="btn btn-outline">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>RetroGaming Hub</h4>
+                    <p>South Africa's #1 retro gaming specialists since 2015. Bringing back the golden age of gaming with modern technology.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <button class="btn btn-accent">Contact Us</button>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Our Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Pre-Built Consoles</a></li>
+                        <li><a href="#">Conversion Services</a></li>
+                        <li><a href="#">ROMs & BIOS</a></li>
+                        <li><a href="#">Gaming Subscriptions</a></li>
+                        <li><a href="#">Controllers & Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Delivery</a></li>
+                        <li><a href="#">Returns & Warranty</a></li>
+                        <li><a href="#">Installation Guide</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2015-2023 RetroGaming Hub. All Rights Reserved. | Privacy Policy - Terms of Use</p>
+                <p style="margin-top: 0.5rem;">Prices in South African Rands (ZAR). All products come with 12-month warranty.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">*Console and game names are trademarks of their respective owners. We provide emulation software and services for legally owned games.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animations and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effect to all buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add to cart functionality
+            document.querySelectorAll('.btn-primary, .btn-accent').forEach(btn => {
+                if(btn.textContent.includes('Add to Cart')) {
+                    btn.addEventListener('click', function() {
+                        const productName = this.closest('.package-card') ? 
+                            this.closest('.package-card').querySelector('h3').textContent :
+                            this.closest('.product-card').querySelector('h4').textContent;
+                        
+                        // Show a simple alert (in a real site, this would add to cart)
+                        alert(`Added "${productName}" to your cart!`);
+                        
+                        // Animate the button
+                        this.style.backgroundColor = '#28a745';
+                        this.innerHTML = '<i class="fas fa-check"></i> Added!';
+                        
+                        setTimeout(() => {
+                            this.style.backgroundColor = '';
+                            this.innerHTML = 'Add to Cart';
+                        }, 1500);
+                    });
+                }
+            });
+            
+            // Currency converter (simplified)
+            const currencyBadges = document.querySelectorAll('.currency-badge');
+            currencyBadges.forEach(badge => {
+                badge.addEventListener('click', function() {
+                    alert('All prices are in South African Rands (ZAR). For currency conversion, please use online tools like XE.com.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
